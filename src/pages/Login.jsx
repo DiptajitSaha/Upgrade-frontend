@@ -18,7 +18,7 @@ export default function Login() {
                 email: email,
                 password: password
               };
-            const user = await axios.post('http://localhost:3000/user/login', {
+            const user = await axios.post('https://upgrade-backend.vercel.app/user/login', {
                 userDetails,
             });
             localStorage.setItem('token', user.data.data.token);

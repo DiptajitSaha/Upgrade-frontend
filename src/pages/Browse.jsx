@@ -9,7 +9,7 @@ export const Browse = () => {
 
   useEffect(() => {
     let temp = [];
-    axios.get('http://localhost:3000/courses/browse').then((res) => {
+    axios.get('https://upgrade-backend.vercel.app/courses/browse').then((res) => {
       temp = (res.data.data.courses.map(i => {
         return { _id: i._id, title: i.title, description: i.description, price: i.price, thumbnailLink: i.thumbnailLink, author: i.author }
       }))

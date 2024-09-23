@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-export const CourseCard = ({ id, title, description, price, thumbnail }) => {
+export const CourseCard = ({ id, title, description, price, thumbnail, published }) => {
 
     return (
         <Link to={`/courses/${id}`} className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max hover:bg-gray-100 dark:border-gray-700 dark:bg-zinc-700 dark:hover:bg-gray-700">

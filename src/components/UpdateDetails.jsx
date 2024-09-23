@@ -3,15 +3,46 @@ import { userInfo } from "../utils/user"
 import Header from "./Header";
 import TextBox from "./TextBox";
 import { useState } from "react";
+import axios from "axios";
 
 const UpdateDetails = ({editHandler}) => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [password, setPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
-    const setUser = useSetRecoilState(userInfo);
 
-    const [error, setError] = useState(false);
+    const updateHandler = async () => {
+        try{
+            const update = {};
+            if(firstName != "") {
+                update.firstName = firstName;
+            }
+            if(lastName != "") {
+                update.lastName = lastName;
+            }
+            if(password != "") {
+                update.password = password;
+            }
+            if(newPassword != "") {
+                update.newPassword = newPassword;
+            }
+
+            const res = await axios.put("https://upgrade-backend.vercel.app/user/update", {
+                update
+            }, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            const data = res.data.data;
+            localStorage.setItem('token', data.token);
+            alert('user details updated successfully!');
+            editHandler();
+        }
+        catch(e) {
+            console.log(e.message);
+        }
+    }
 
     return (
         <div>
@@ -30,7 +61,7 @@ const UpdateDetails = ({editHandler}) => {
                 <div className="flex justify-center">
                     <button
                         className="bg-slate-800 text-white rounded-lg p-2 w-80 transition-all hover:bg-slate-900"
-                        onClick={editHandler}
+                        onClick={updateHandler}
                     >
                         Update Details
                     </button>

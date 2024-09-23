@@ -11,7 +11,7 @@ export const Course = () => {
 
     useEffect(() => {
         const fetchCourse = async () => {
-            const res = await axios.get(`http://localhost:3000/courses/${id}`, {
+            const res = await axios.get(`https://upgrade-backend.vercel.app/courses/${id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
@@ -28,7 +28,7 @@ export const Course = () => {
 
     const buyHandler = async () => {
         try {
-            const res = await axios.put(`http://localhost:3000/courses/buy/${id}`, {}, {
+            const res = await axios.put(`https://upgrade-backend.vercel.app/courses/buy/${id}`, {}, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }

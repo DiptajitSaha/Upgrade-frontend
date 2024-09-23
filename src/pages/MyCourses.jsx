@@ -8,7 +8,7 @@ export const MyCourses = () => {
 
   useEffect(() => {
     let temp = [];
-    axios.get('http://localhost:3000/courses/mycourses', {
+    axios.get('https://upgrade-backend.vercel.app/courses/mycourses', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }

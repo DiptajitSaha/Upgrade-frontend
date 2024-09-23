@@ -18,7 +18,7 @@ export default function Signup() {
 
     const handleSignUp = async () => {
         try {
-            const res = await axios.post("http://localhost:3000/user/signup", {
+            const res = await axios.post("https://upgrade-backend.vercel.app/user/signup", {
                 userDetails: {
                     firstName,
                     lastName,
@@ -36,7 +36,6 @@ export default function Signup() {
             console.error(e);
         }
     };
-    // console.log(user);
 
     return (
         <div className="h-screen w-screen flex justify-center items-center z-0">

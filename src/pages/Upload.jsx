@@ -24,10 +24,13 @@ const Upload = () => {
     const uploadHandler = () => {
         try {
             if (videos.length == 0) throw new Error('No videos attached');
+            
             if (thumbnail === null) throw new Error('Upload thumbnail');
-            if (title === '' || description === '' || price === 0) throw new Error('Incomplete data!')
+            if (title === '' || description === '' || price === 0) throw new Error('Incomplete data!');
 
             const formData = new FormData();
+
+            setUploading(true);
             videos.forEach(video => {
                 formData.append('videos', video);
             });
@@ -38,7 +41,7 @@ const Upload = () => {
 
             setUploadMessage('uploading...');
 
-            axios.post('http://localhost:3000/courses/create', formData, {
+            axios.post('https://upgrade-backend.vercel.app/courses/create', formData, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 },

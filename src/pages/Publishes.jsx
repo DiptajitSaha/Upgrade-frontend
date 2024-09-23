@@ -2,8 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import NotFound from "./NotFound";
 import { useNavigate } from "react-router-dom";
-import { CourseCard } from "../components/CourseCard";
 import Header from "../components/Header";
+import { PublishCard } from "../components/PublishCard";
 
 const Publishes = () => {
     const [courses, setCourses] = useState([]);
@@ -11,13 +11,13 @@ const Publishes = () => {
 
     useEffect(() => {
 
-        axios.get('http://localhost:3000/courses/publishes', {
+        axios.get('https://upgrade-backend.vercel.app/courses/publishes', {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }
         }).then(res => setCourses(res.data.data.courses));
     }, []);
-
+    console.log(courses)
     return (
         localStorage.getItem('token') == null ? <NotFound /> :
             <div className='mx-32 my-10 text-white'>
@@ -40,7 +40,7 @@ const Publishes = () => {
                     {
                         courses.map(course => (
                             <div key={course._id} className='p-2'>
-                                <CourseCard key={course._id} id={course._id} title={course.title} description={course.description} thumbnail={course.thumbnailLink} />
+                                <PublishCard key={course._id} id={course._id} title={course.title} description={course.description} thumbnail={course.thumbnailLink} published={course.published}/>
                             </div>
 
                         ))
